@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCoachRequest extends FormRequest

@@ -44,4 +44,10 @@ To set up the project locally:
 
 [Provide instructions on how to use the application, including any necessary screenshots or examples.]
 
+### Commands
 
+### 
+
+### CI/CD
+./vendor/bin/sail  pint
+./vendor/bin/sail  test
