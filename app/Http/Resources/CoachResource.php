@@ -13,6 +13,7 @@ class CoachResource extends JsonResource
         $startDate = Carbon::create($this->start_date)->format('Y-m-d\TH:i:s.u\Z');
 
         return [
+            'id' => (string) $this->id,
             'name' => $this->name,
             'years_of_experience' => $this->years_of_experience,
             'hourly_rate' => $this->hourly_rate,
