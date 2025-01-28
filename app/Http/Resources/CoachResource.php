@@ -18,7 +18,7 @@ class CoachResource extends JsonResource
             'hourly_rate' => $this->hourly_rate,
             'city' => $this->city,
             'country' => $this->country,
-            'date' => $startDate,
+            'start_date' => $startDate,
         ];
     }
 }

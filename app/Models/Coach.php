@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 
 class Coach extends Model
@@ -30,19 +31,17 @@ class Coach extends Model
         });
     }
 
-    public function scopeSearch($query, $text): Builder
+    public function scopeSearchText($query, $text): Builder
     {
         if (! $text) {
             return $query;
         }
 
-        $query->where(function ($query) use ($text) {
+        return $query->where(function ($query) use ($text) {
             $query->where('name', 'like', "%$text%")
                 ->orWhere('country', 'like', "%$text%")
                 ->orWhere('city', 'like', "%$text%");
         });
-
-        return $query;
     }
 
     public function scopeFilterByName($query, $name): Builder
@@ -63,8 +62,21 @@ class Coach extends Model
         return $query->where('location', 'like', "%$location%");
     }
 
-    public function scopeSortByRate($query, $order = 'asc'): Builder
+    public function scopeSort($query, $sortBy, $order): Builder|JsonResponse
     {
-        return $query->orderBy('hourly_rate', $order);
+        if (! $sortBy || ! $order) {
+            return $query;
+        }
+        $allowedSortBy = ['name', 'hourly_rate'];
+
+        if (! in_array($sortBy, $allowedSortBy)) {
+            return response()->json(['error' => 'Invalid sort_by value. Allowed: name, hourly_rate.'], 400);
+        }
+
+        if (! in_array($order, ['asc', 'desc'])) {
+            return response()->json(['error' => 'Invalid sort value. Use "asc" or "desc".'], 400);
+        }
+
+        return $query->orderBy($sortBy, $order);
     }
 }

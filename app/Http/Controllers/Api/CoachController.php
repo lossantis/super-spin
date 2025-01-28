@@ -13,23 +13,14 @@ class CoachController extends Controller
 {
     public function index(Request $request)
     {
-        $sortBy = $request->input('sort_by', 'hourly_rate');
-        $sortOrder = $request->input('sort', 'asc');
+        $sortBy = $request->input('sort_by');
+        $sortOrder = $request->input('sort');
 
-        $search = $request->input('search');
-
-        $allowedSortBy = ['name', 'hourly_rate'];
-        if (! in_array($sortBy, $allowedSortBy)) {
-            return response()->json(['error' => 'Invalid sort_by value. Allowed: name, hourly_rate.'], 400);
-        }
-
-        if (! in_array($sortOrder, ['asc', 'desc'])) {
-            return response()->json(['error' => 'Invalid sort value. Use "asc" or "desc".'], 400);
-        }
+        $searchText = $request->input('search');
 
         $coaches = Coach::query()
-            ->search($search)
-            ->orderBy($sortBy, $sortOrder)
+            ->searchText($searchText)
+            ->sort($sortBy, $sortOrder)
             ->get();
 
         return CoachResource::collection($coaches);
