@@ -3,7 +3,8 @@
 SuperSpin, a startup based in Cairo, Egypt, with the vision of becoming the "Ultimate Marketplace for Table Tennis Players", it connects Table Tennis Players with professional Coaches for one-on-one training sessions.
 
 ## Pre-requisites
-- Download and install [Docker Desktop](https://www.docker.com)
+- [Docker Desktop](https://www.docker.com)
+- [Composer](https://getcomposer.org/) 
 
 ## Installation
 
@@ -17,40 +18,45 @@ To set up the project locally:
 
 2. **Install dependencies:**
    ```bash
-   ./vendor/bin/sail up --build
+   composer install
    ```
 
 3. **Set up environment variables:**
     - Duplicate the `.env.example` file and rename the copy to `.env`.
 
-4. **Generate application key:**
+4. **Run docker:**
+   ```bash
+   ./vendor/bin/sail up --build
+   ```
+
+5. **Generate application key:**
    ```bash
    ./vendor/bin/sail artisan key:generate
    ```
 
-5. **Run database migrations:**
+6. **Run database migrations:**
    ```bash
    ./vendor/bin/sail artisan migrate
    ```
 
-6. **Run database seeders:**
+7. **Run database seeders:**
    ```bash
    ./vendor/bin/sail artisan db:seed
    ```
 
-7. **Start the development server:**
+8. **Start the development server:**
    ```bash
    ./vendor/bin/sail up
    ```
 
-8. **Stop the development server:**
+9. **Stop the development server:**
    ```bash
    ./vendor/bin/sail down
    ```
 
 ## TESTS
 ```bash
-./vendor/bin/sail test
+./vendor/bin/sail test tests/Feature
 ```
 
 ## API usage
