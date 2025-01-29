@@ -48,7 +48,12 @@ To set up the project locally:
    ./vendor/bin/sail down
    ```
 
-## API usage\
+## TESTS
+```bash
+./vendor/bin/sail test
+```
+
+## API usage
 ### 1. Get coaches (Controller index method)
 ```http request
 GET /api/coach
@@ -116,6 +121,32 @@ DELETE /api/coach/{coachId}
 ###### Request
 ```http request
 DELETE /api/coach/d3f57bb2-0c25-478a-a61c-26cd282050c4
+```
+
+### 6. How to search
+#### Endpoint:
+```http request
+GET /api/coach?search=
+```
+##### Examples
+###### Request
+```http request
+GET /api/coach?search=Hugo
+```
+
+### 7. How to sort
+#### Endpoint:
+```http request
+GET /api/coach?sort_by=&sort=
+```
+##### Examples
+###### Sort by hourly date ascending
+```http request
+GET /api/coach?sort_by=hourly_rate&sort=asc
+```
+###### Sort by hourly date descending
+```http request
+GET /api/coach?sort_by=hourly_rate&sort=desc
 ```
 
 ## Web usage

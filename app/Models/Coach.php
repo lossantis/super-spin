@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvalidSortByException;
+use App\Exceptions\InvalidSortOrderException;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 
 class Coach extends Model
@@ -62,7 +64,10 @@ class Coach extends Model
         return $query->where('location', 'like', "%$location%");
     }
 
-    public function scopeSort($query, $sortBy, $order): Builder|JsonResponse
+    /**
+     * @throws Exception
+     */
+    public function scopeSort($query, $sortBy, $order): Builder
     {
         if (! $sortBy || ! $order) {
             return $query;
@@ -70,11 +75,11 @@ class Coach extends Model
         $allowedSortBy = ['name', 'hourly_rate'];
 
         if (! in_array($sortBy, $allowedSortBy)) {
-            return response()->json(['error' => 'Invalid sort_by value. Allowed: name, hourly_rate.'], 400);
+            throw new InvalidSortByException($sortBy);
         }
 
         if (! in_array($order, ['asc', 'desc'])) {
-            return response()->json(['error' => 'Invalid sort value. Use "asc" or "desc".'], 400);
+            throw new InvalidSortOrderException($order);
         }
 
         return $query->orderBy($sortBy, $order);
