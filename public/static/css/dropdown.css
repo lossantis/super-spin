@@ -1,0 +1,11 @@
+select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.sort-dropdown {
+    margin-top: 10px;
+}

@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Table Tennis Coaches</title>
     <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/input-text.css">
+    <link rel="stylesheet" href="/static/css/dropdown.css">
+    <link rel="stylesheet" href="/static/css/button.css">
+    <link rel="stylesheet" href="/static/css/table.css">
     <link rel="stylesheet" href="/static/css/coach-table.css">
 </head>
 <body>
@@ -21,6 +25,7 @@
                 <option value="desc">Descending</option>
             </select>
         </label>
+
         <button type="button" class="send-button">Send</button>
     </div>
     <table id="coachesTable" role="table">

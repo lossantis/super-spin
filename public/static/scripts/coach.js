@@ -50,6 +50,16 @@ function filter() {
 }
 
 document.querySelector('.send-button').addEventListener('click', filter);
+document.querySelector('.search-bar').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        filter();
+    }
+});
+document.querySelector('.sort-dropdown').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        filter();
+    }
+});
 
 get().then(data => {
     if (data) show(data);
