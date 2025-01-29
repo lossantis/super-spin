@@ -17,12 +17,11 @@ To set up the project locally:
 
 2. **Install dependencies:**
    ```bash
-   [Provide the command to install composer dependencies]
+   ./vendor/bin/sail up --build
    ```
 
 3. **Set up environment variables:**
     - Duplicate the `.env.example` file and rename the copy to `.env`.
-    - Update the `.env` file with your configuration settings.
 
 4. **Generate application key:**
    ```bash
@@ -34,20 +33,92 @@ To set up the project locally:
    ./vendor/bin/sail artisan migrate
    ```
 
-6. **Start the development server:**
+6. **Run database seeders:**
+   ```bash
+   ./vendor/bin/sail artisan db:seed
+   ```
+
+7. **Start the development server:**
    ```bash
    ./vendor/bin/sail up
    ```
-   Access the application at `http://localhost`.
 
-## Usage
+8. **Stop the development server:**
+   ```bash
+   ./vendor/bin/sail down
+   ```
 
-[Provide instructions on how to use the application, including any necessary screenshots or examples.]
+## API usage\
+### 1. Get coaches (Controller index method)
+```http request
+GET /api/coach
+```
 
-### Commands
+### 2. Get single coach (Controller show method)
+```http request
+GET /api/coach/{coachId}
+ ```
+##### Examples
+###### Request
+```http request
+GET /api/coach/d3f57bb2-0c25-478a-a61c-26cd282050c4
+ ```
 
-### 
+### 3. Add coach (Controller store method)
 
-### CI/CD
-./vendor/bin/sail  pint
-./vendor/bin/sail  test
+#### Endpoint:
+```http request
+POST /api/coach
+```
+##### Examples
+###### Payload:
+```json
+{
+    "name": "Hugo Santos", 
+    "years_of_experience": 10, 
+    "hourly_rate": 11.5, 
+    "city": "Braga",
+    "country": "Portugal", 
+    "start_date": "2023-01-23T08:00:00.000000Z"
+}
+```
+
+### 4. Add coach (Controller update method)
+#### Endpoint:
+```http request
+PUT /api/coach/{coachId}
+```
+
+##### Examples
+###### Request:
+```http request
+PUT /api/coach/d3f57bb2-0c25-478a-a61c-26cd282050c4
+```
+
+##### Payload:
+```json
+{
+    "name": "Hugo Santos",
+    "years_of_experience": 20,
+    "hourly_rate": 50,
+    "city": "Lisboa",
+    "country": "Portugal",
+    "start_date": "2023-01-01T08:00"
+}
+```
+
+### 5. Add coach (Controller update method)
+#### Endpoint:
+```http request
+DELETE /api/coach/{coachId}
+```
+##### Examples
+###### Request
+```http request
+DELETE /api/coach/d3f57bb2-0c25-478a-a61c-26cd282050c4
+```
+
+## Web usage
+* Access the application at `http://localhost`. The coaches list will be loaded.
+* To filter the coach by name, country or city, type the text on search textbox and press send button.
+* To sort the coach by hourly rate ascending or descending, choose on the dropdown and press send button.
