@@ -25,10 +25,15 @@ function show(coaches) {
         return;
     }
 
+    let coachCounter = 0;
+
     coaches.data.forEach(coach => {
+        coachCounter++;
+
         const row = document.createElement('tr');
         row.setAttribute('role', 'row')
         row.innerHTML = `
+                    <td role="cell">${coachCounter}</td>
                     <td role="cell">${coach.name}</td>
                     <td role="cell">${coach.years_of_experience}</td>
                     <td role="cell">${coach.hourly_rate}</td>

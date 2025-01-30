@@ -31,6 +31,7 @@
     <table id="coachesTable" role="table">
         <thead role="rowgroup">
             <tr role="row">
+                <th role="columnheader">&nbsp;</th>
                 <th role="columnheader">Name</th>
                 <th role="columnheader">Experience (years)</th>
                 <th role="columnheader">Hourly Rate ($)</th>

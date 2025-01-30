@@ -14,12 +14,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->truncate();
+        $this->truncate();
+
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
 
         $this->call(CoachSeeder::class);
+    }
+
+    private function truncate(): void
+    {
+        DB::table('users')->truncate();
+        DB::table('coaches')->truncate();
     }
 }
